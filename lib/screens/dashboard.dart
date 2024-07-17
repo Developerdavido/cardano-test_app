@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/constants/api_constants.dart';
 import 'package:myapp/services/address_service.dart';
+import 'package:myapp/utils/utils.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -17,34 +18,6 @@ class _DashboardState extends State<Dashboard> {
   num dollarEquivalentOfAda = 0;
 
   AddressService addressService = AddressService();
-
-  // //this function will get the balance of my wallet
-  // getBalance() {
-  //   var url = Uri.parse("$blockfrostUrl/addresses/$myAddress");
-  //   var headers = {"project_id": blockfrostProjectId};
-  //   //get request from blockfrost servers
-  //   http.get(url, headers: headers).then((response) {
-  //     String responseBody = response.body;
-
-  //     ///convert string code to map<String, dynamic> in dart
-  //     Map<String, dynamic> addressMap = jsonDecode(responseBody);
-  //     setState(() {
-  //       myAdressFromApi = addressMap['address'];
-  //       _getADABalance(addressMap['amount']);
-  //     });
-
-  //     print("response body ====> ${response.body}");
-  //     print("response status code ====> ${response.statusCode}");
-  //   });
-  // }
-
-  // _getADABalance(List<dynamic> amounts) {
-  //   Map<dynamic, dynamic> lovelaceBalance = amounts
-  //       .firstWhere((singleAmount) => singleAmount['unit'] == 'lovelace');
-  //   num lovelaceQuantity = num.parse(lovelaceBalance['quantity']);
-  //   myTADABalance = (lovelaceQuantity / 1000000).toStringAsFixed(2);
-  //   dollarEquivalentOfAda = (lovelaceQuantity / 1000000) * 0.39;
-  // }
 
 //this will call the get balance when the state is initialized
   @override
@@ -66,27 +39,18 @@ class _DashboardState extends State<Dashboard> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Align(
+          Align(
             alignment: Alignment.center,
-            child: Text(
-              "My Address: ${ApiConstants.myAddress}",
-              textAlign: TextAlign.left,
-            ),
+            child: Utils.captionText(ApiConstants.myAddress),
           ),
           Align(
             alignment: Alignment.center,
-            child: Text(
-              "My TADA Balance: $myTADABalance",
-              textAlign: TextAlign.left,
-            ),
+            child: Utils.titleText("My TADA Balance: $myTADABalance", fontSize: 18,),
           ),
           //Assignment: using a text display the Dollar equivalent of your test ada
           Align(
             alignment: Alignment.center,
-            child: Text(
-              "My TADA Balance in dollar: $dollarEquivalentOfAda",
-              textAlign: TextAlign.left,
-            ),
+            child: Utils.titleText("My TADA Balance in dollar: $dollarEquivalentOfAda", fontSize: 18,),
           )
         ],
       ),

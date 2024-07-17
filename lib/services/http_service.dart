@@ -10,6 +10,14 @@ class HttpService {
     return response;
   }
 
+  //This function will make a post request
+
+
+  //This function will make a delete request
+
+
+  //This function will make a put request
+
 
 
 }
